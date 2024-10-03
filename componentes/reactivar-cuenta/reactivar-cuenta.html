@@ -75,21 +75,15 @@
 
 <script>
     document.getElementById('reactivar-cuenta').addEventListener('click', ()=>{
-        
         const cuentaReactivar = document.getElementById('accountSelect').value;
-        
-        password=localStorage.getItem('userPassword');
-        webKey = document.getElementById('web-key').value;
-
+        let password=localStorage.getItem('userPassword');
+        let webKey = document.getElementById('web-key').value;
         if (webKey == password){
             localStorage.setItem('cuentaReactivar', cuentaReactivar);
             cargarComponente('./componentes/reactivar-cuenta/reactivar-cuenta2.html','info');
-        } else {
-            if (webKey == ''){
+        } else if (webKey == ''){
                 alert('Ingrese su clave web');
             } else 
                 alert('Clave web incorrecta');
-        }
-
     });
 </script>

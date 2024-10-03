@@ -55,7 +55,7 @@
 
 <script>
     document.getElementById('suspender-cuenta3').addEventListener('click',async ()=> {
-        cuentaSuspender=localStorage.getItem('cuentaSuspender');
+        let cuentaSuspender=localStorage.getItem('cuentaSuspender');
 
                 const url ='http://104.248.7.1:8080/api/bankAccount/'+cuentaSuspender;
                 const data = {
@@ -78,8 +78,5 @@
                     await updateUserLocalData();
                     cargarComponente('./componentes/suspender-cuenta/suspender-cuenta4.html','info');
                 }
-
-
-        
     });
 </script>

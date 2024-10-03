@@ -64,16 +64,14 @@
 
 <script>
     document.getElementById('cerrar-cuenta2').addEventListener('click',()=>{
-        password=localStorage.getItem('userPassword');
-        webKey = document.getElementById('webKey').value;
+        let password=localStorage.getItem('userPassword');
+        let webKey = document.getElementById('webKey').value;
 
         if (webKey === password){
             cargarComponente('./componentes/cerrar-cuenta/cerrar-cuenta3.html', 'info');
-        } else {
-            if (webKey == ''){
+        } else if (webKey == ''){
                 alert('Ingrese su clave web');
             } else 
                 alert('Clave web incorrecta');
-        }
     })
 </script>

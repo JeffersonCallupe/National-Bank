@@ -76,13 +76,13 @@
     document.getElementById('nueva-cuenta2').addEventListener('click',async ()=> {
         
         const user = getUserLocalData();
-        pin=document.getElementById('pin').value;
-        confirmarPin=document.getElementById('confirmar-pin').value;
+        let pin=document.getElementById('pin').value;
+        let confirmarPin=document.getElementById('confirmar-pin').value;
 
         // Verificar si los valores coinciden
         if (pin === confirmarPin && pin === user.password) {
             const url = 'http://104.248.7.1:8080/api/bankAccount/create/' + user.id;
-            response= await fetch(url, {
+            let response= await fetch(url, {
                 method: 'POST',
                 body: JSON.stringify({}),
                 headers: {
@@ -95,12 +95,10 @@
             await updateUserLocalData();
             await cargarComponente('./componentes/crear-cuenta/nueva-cuenta3.html', 'info');
 
-        } else {
-            if (pin !== confirmarPin) {
+        } else if (pin !== confirmarPin) {
                 alert('Los PIN no coinciden');
             } else {
                 alert('El PIN no coincide con el registrado');
             }
-        }
     });
 </script>

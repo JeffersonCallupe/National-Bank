@@ -67,11 +67,11 @@
 
         if (user.password == document.getElementById('pin').value) {
             await cargarComponente('./componentes/suspender-cuenta/suspender-cuenta3.html','info');
-        } else {
-            if (document.getElementById('pin').value == '') {
+        } else if (document.getElementById('pin').value == '') {
                 alert('Debe ingresar una clave');
             } else alert('Clave incorrecta');
-        }
     });
 
 </script>
+
+
