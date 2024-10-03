@@ -1,0 +1,82 @@
+<div id="confirmationDialog">
+    <p>¿Está seguro que desea reactivar esta cuenta?</p>
+    <div class="button-group">
+        <button id="noButton" onclick="window.location.href='gestionar-cuenta.html'">No</button>
+        <button id="reactivar-cuenta2">Sí</button>
+    </div>
+</div>
+
+<style>
+
+#confirmationDialog {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 50px;
+    height: 150px;
+}
+
+#confirmationDialog p {
+    margin-top: 40px;
+    font-size: 16px;
+    color: #333;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+#noButton {
+    background-color: #ffffff;
+    color: #007BFF;
+    border: 1px solid #007BFF;
+}
+
+#reactivar-cuenta2 {
+    background-color: #007BFF;
+    color: white;
+}
+
+#noButton:hover, #reactivar-cuenta2:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: transparent;
+}
+
+</style>
+
+<script>
+    document.getElementById('reactivar-cuenta2').addEventListener("click", async () => {
+
+        let cuentaReactivar = await localStorage.getItem('cuentaReactivar');
+
+        const url = 'http://104.248.7.1:8080/api/bankAccount/' + cuentaReactivar;
+        const data = {
+            "status": "ACTIVE"
+        };
+
+        const response = await fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        if (!response.ok) {
+            throw new Error('Error en la reactivación de la cuenta');
+        }
+
+        localStorage.removeItem('cuentaReactivar');
+        await updateUserLocalData();
+        cargarComponente('./componentes/reactivar-cuenta/reactivar-cuenta3.html', 'info');
+    });
+</script>

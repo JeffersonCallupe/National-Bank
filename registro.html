@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Bank</title>
+    <link rel="stylesheet" href="./css/registroStyle.css">
+</head>
+<body>
+<div class="card">
+    <img id="logo" src="./images/logo.png" alt="">
+    <form id="registro">
+        <div>
+            <select id="document-type" name="document-type" required>
+                <option value="DNI">DNI</option>
+                <option value="Carnet de Extranjeria">Carnet de Extranjeria</option>
+            </select>
+            <input type="text" id="dni" name="dni" required placeholder="Número de documento">
+            <input type="text" id="nombre" name="nombre" required placeholder="Nombres completos">
+            <input type="text" id="apellidos" name="apellidos" required placeholder="Apellidos completos">
+            <input type="email" id="correo" name="correo" required placeholder="Correo electrónico">
+            <input type="text" id="celular" name="celular" placeholder="Celular" required>
+            <input type="text" id="fechaNacimiento" name="fechaNacimiento" required placeholder="Fecha de nacimiento"
+                   onfocus="this.type='date'" onblur="this.type='text'">
+            <input type="password" id="password" name="password" required placeholder="Clave web">
+            <input type="password" id="passwordConfirmed" name="passwordConfirmed" required
+                   placeholder="Confirmar clave web">
+            <span id="error-message" class="error-message"></span>
+            <button type="submit" id="registrar">Registrar</button>
+        </div>
+    </form>
+</div>
+
+<div id="success-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <p>Registro exitoso. Serás redirigido al inicio de sesión.</p>
+    </div>
+</div>
+
+<script src="./js/validationRegistro.js"></script>
+</body>
+</html>

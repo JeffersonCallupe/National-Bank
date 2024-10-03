@@ -1,0 +1,106 @@
+<div class="crear-cuenta-form">
+    <h2>Información Personal</h2>
+    <img src="./images/tarjeta01.png" alt="">
+    <form id="crearCuentaForm2">
+        <label for="pin">Contraseña</label></br>
+        <input id="pin" type="password" placeholder="Ingrese contraseña" required></br>
+        <label for="confirmar-pin">Confirmar Contraseña</label><br>
+        <input id="confirmar-pin" type="password" placeholder="Confirme su contraseña" required>
+    </form>
+    <button id="nueva-cuenta2" type="reset">Continuar</button>
+    
+</div>
+
+<style>
+    
+    .crear-cuenta-form {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 520px;
+        
+    }
+    
+    .crear-cuenta-form h2 {
+        background-color: #8F8F8F;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+
+
+    #crearCuentaForm2 div {
+        width: 50%;
+    }
+    
+    #crearCuentaForm2 label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+    
+    #crearCuentaForm2 input,
+    #crearCuentaForm2 select {
+        width: 170px;
+        height: 26px;   margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+
+    }
+    
+    #nueva-cuenta2 {
+        width: 296px;
+        height: 40px;
+        padding: 10px;
+        margin-bottom: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    #nueva-cuenta2:hover {
+        background-color: #0056b3;
+    }
+    
+</style>
+
+
+<script>
+    document.getElementById('nueva-cuenta2').addEventListener('click',async ()=> {
+        
+        const user = getUserLocalData();
+        pin=document.getElementById('pin').value;
+        confirmarPin=document.getElementById('confirmar-pin').value;
+
+        // Verificar si los valores coinciden
+        if (pin === confirmarPin && pin === user.password) {
+            const url = 'http://104.248.7.1:8080/api/bankAccount/create/' + user.id;
+            response= await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify({}),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+            await updateUserLocalData();
+            await cargarComponente('./componentes/crear-cuenta/nueva-cuenta3.html', 'info');
+
+        } else {
+            if (pin !== confirmarPin) {
+                alert('Los PIN no coinciden');
+            } else {
+                alert('El PIN no coincide con el registrado');
+            }
+        }
+    });
+</script>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="banner-lateral">
+        <img id="userPhoto" src="./images/foto-usuario.png" alt="foto">
+        <h3 id="nombre"></h3>
+        <h3 id="apellido"></h3>
+        <hr>
+        <nav>
+            <ul>
+                <li><a href="#" id="cuenta">Mi Perfil</a></li>
+                <li><a href="#" id="tarjeta">Estado de Cuentas</a></li>
+            </ul>
+        </nav>
+        <img id="logo" src="./images/logo-blanco.png" alt="logo empresa">
+    </section>
+    
+    <div style="margin-left: auto; margin-right: auto; width: 70%;">
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li><a href="./web-construccion.html" style="display: none;">Mi perfil</a></li>
+                <li ><a id="salir" href="./menu.html">Salir</a></li>
+            </ul>
+        </nav>
+        <main>
+            <div class="contenido"  id="contenido">
+            </div>
+        </main>
+    </div>
+    <footer>
+        © National Bank
+    </footer>
+    
+    <script src="./js/cargarComponente.js"></script>
+    <script src="./js/gestionarCuenta.js"></script>
+    <style>
+        .banner-lateral{
+            background-color: #333333;
+            width: 25%;
+            text-align: center;
+        }
+
+        .banner-lateral hr{
+            margin: 20px 20px;
+            border: 1px solid white;
+        }
+        #userPhoto{
+            margin: 40px auto 30px auto;
+            max-width: 150px;
+            border-radius: 50%; 
+            overflow: hidden; 
+            object-fit: cover;
+        }
+        #logo{
+            margin: 40px auto 30px auto;
+            max-width: 150px;
+        }
+
+        .banner-lateral h3{
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .banner-lateral ul{
+            list-style-type: none;
+        }
+
+        .banner-lateral li{
+            margin-bottom: 20px;
+            margin-top: 20px;
+            padding: 5px;
+            padding-top: 5px;
+        }
+
+        .banner-lateral li:hover{
+            background-color: #0842C5;
+        }
+
+        .banner-lateral a{
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        footer {
+            width: 100%;
+            background-color: #0842C5;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+
+    <script>
+        //cargando la información del usuario
+        window.addEventListener('load', async() => {
+            const user = getUserLocalData();
+            await cargarComponente('./componentes/perfil/info-cuenta.html','contenido');
+
+            document.getElementById('numero-documento').value = user.numIdentification;
+            document.getElementById('nombres').value = user.firstName;
+            document.getElementById('apellidos').value = user.lastName;
+            document.getElementById('celular').value = user.phone;
+            document.getElementById('fecha-nacimiento').value = user.birthDate;
+
+        });
+        document.getElementById('cuenta').addEventListener('click', async() => {
+            await cargarComponente('./componentes/perfil/info-cuenta.html','contenido');
+            const user = getUserLocalData();
+            document.getElementById('numero-documento').value = user.numIdentification;
+            document.getElementById('nombres').value = user.firstName;
+            document.getElementById('apellidos').value = user.lastName;
+            document.getElementById('celular').value = user.phone;
+            document.getElementById('fecha-nacimiento').value = user.birthDate;
+        });
+
+        document.getElementById('tarjeta').addEventListener('click', async() => {
+            await cargarComponente('./componentes/perfil/info-tarjeta.html','contenido');
+
+            const user = getUserLocalData();
+
+            if (user) {
+            // Obtener el contenedor de las tarjetas de cuentas
+            const cardsCuentas = document.querySelector('.cards-cuentas');
+
+            // Crear las tarjetas de cuentas
+            user.bankAccounts.forEach(account => {
+                // Crear un div para la cuenta
+                const cuentaDiv = document.createElement('div');
+                cuentaDiv.classList.add('cuenta');
+
+                // Crear el contenido de la cuenta
+                const numeroCuenta = document.createElement('h3');
+                numeroCuenta.textContent = `Número de cuenta: ${account.accountNumber}`;
+                const fechaApertura = document.createElement('p');
+                fechaApertura.textContent = `Fecha de apertura: ${new Date(account.audit.createdAt).toLocaleDateString()}`;
+                const balance = document.createElement('p');
+                balance.textContent = `Balance: s/ ${account.balance}`;
+                const estado = document.createElement('p');
+                estado.textContent = `Estado: ${account.status}`;
+
+                // Añadir el contenido al div de la cuenta
+                cuentaDiv.appendChild(numeroCuenta);
+                cuentaDiv.appendChild(fechaApertura);
+                cuentaDiv.appendChild(balance);
+                cuentaDiv.appendChild(estado);
+
+                // Añadir el div de la cuenta al contenedor
+                cardsCuentas.appendChild(cuentaDiv);
+            });
+        }
+
+        });
+
+    </script>
+
+</body>
+</html>

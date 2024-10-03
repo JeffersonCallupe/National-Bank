@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/menuStyle.css">
+    <title>Menú usuario</title>
+    
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li><a href="./menu.html">Inicio</a></li>
+            <li style="display: none;"><a href="./web-construccion.html">Acerca de nosotros</a></li>
+            <li style="display: none;"><a href="./web-construccion.html">Contáctanos</a></li>
+            <li><a href="./perfil.html">Mi perfil</a></li>
+            <li><a id="salir" type="reset" href="#">Salir</a></li>
+        </ul>
+    </nav>
+    <div class="banner">
+        <h1>¡Bienvenido, <span id="user-name">user name</span>!</h1>
+        <p>¿Qué deseas realizar?</p>
+        <input type="text" placeholder="Buscar" style="display: none;">
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <img src="./images/Gestionar cuenta img.png" alt="Gestionar cuenta">
+            <div>
+                <h3>Gestionar cuenta</h3><br>
+                <p>Tener una cuenta nunca fue tan fácil. Apertura de cuenta y familiarízate de todo...</p><br>
+                <a href="./gestionar-cuenta.html"  class="button">Ver más →</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="./images/Transacción Img.png" alt="Gestionar cuenta">
+            <div>
+                <h3>Realizar transferencias</h3><br>
+                <p>Realiza transferencias y aprovecha todas las opciones para gestionar tus finanzas de forma rápida ...</p><br>
+                <a href="./transferencias.html" class="button">Ver más →</a>
+            </div>
+        </div>
+        <div class="card" >
+            <img src="./images/Tasa Img.png" alt="Gestionar cuenta">
+            <div>
+                <h3>Pagar tasas</h3><br>
+                <p>Cumple con tus obligaciones tributarias de forma rápida y sencilla ...</p><br>
+                <a href="./web-construccion.html" class="button">Ver más →</a>
+            </div>
+        </div>
+
+
+    </div>
+    <footer>
+        © National Bank
+    </footer>
+    <script src="./js/ScriptsMenu.js"></script>
+    <script>//no se ejecuta cuando se pone en scriptsMenu.js, por mientras aqui
+
+        document.getElementById('salir').addEventListener('click', function(event) {
+        event.preventDefault(); // Previene la acción por defecto del enlace
+
+        alert('Saliendo de la aplicación...');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userPassword');
+        localStorage.removeItem('user');
+        // Por ejemplo, puedes redirigir al usuario a una página de login
+        window.location.href = './index.html';
+    });
+    </script>
+</body>
+</html>

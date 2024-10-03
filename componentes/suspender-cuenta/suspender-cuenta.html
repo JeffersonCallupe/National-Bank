@@ -1,0 +1,87 @@
+<div class="reactivation-form">
+    <h2>Suspender de cuenta</h2>
+    <form id="reactivationForm">
+
+
+        <select id="accountSelect">
+        </select>
+
+
+        <select id="motivo-select">
+            <option value="">Indique el motivo...</option>
+            <option value="1">Perdida/hurto de tarjeta</option>
+            <option value="2">Sospecha de fraude</option>
+            <option value="2">Otros</option>
+        </select>
+        <textarea name="textarea" id="textarea" placeholder="Describa brevemente"></textarea>
+
+        <button type="reset" id="suspender-cuenta">Continuar</button>
+    </form>
+
+</div>
+
+<style>
+    
+    .reactivation-form {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 520px;
+        
+    }
+    
+    .reactivation-form h2 {
+        background-color: #8F8F8F;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    #reactivationForm{
+        padding: 20px;
+    
+    }
+    
+    #reactivationForm input,
+    #reactivationForm select
+     {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #reactivationForm textarea{
+        width: 480px;
+        height: 80px;
+        margin-bottom: 20px;
+        resize: none;
+    }
+    
+    #reactivationForm button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    #reactivationForm button:hover {
+        background-color: #0056b3;
+    }
+    
+    
+</style>
+
+<script>
+    document.getElementById('suspender-cuenta').addEventListener('click',()=>{
+        idCuenta=document.getElementById('accountSelect').value;
+        localStorage.setItem('cuentaSuspender', idCuenta);//se almacenará el número de cuenta en el localStorage
+        cargarComponente('./componentes/suspender-cuenta/suspender-cuenta2.html','info')
+    })
+</script>

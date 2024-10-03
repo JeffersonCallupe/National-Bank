@@ -1,0 +1,77 @@
+<div id="confirmationDialog">
+    <p>Digite su clave web</p>
+    <input type="password" name="" id="pin" placeholder="clave web">
+    <div class="button-group">
+        <button id="noButton" onclick="window.location.href='gestionar-cuenta.html'">Volver</button>
+        <button id="suspender-cuenta2">Continuar</button>
+    </div>
+</div>
+
+<style>
+
+#confirmationDialog {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 50px;
+    height: 150px;
+}
+
+#confirmationDialog input{
+    width: 294px;
+    height: 26px;
+    margin: 20px;
+}
+
+#confirmationDialog p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+#noButton {
+    background-color: #ffffff;
+    color: #007BFF;
+    border: 1px solid #007BFF;
+}
+
+#suspender-cuenta2 {
+    background-color: #007BFF;
+    color: white;
+}
+
+#noButton:hover, #suspender-cuenta2:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: transparent;
+}
+
+
+
+</style>
+<script>
+    document.getElementById('suspender-cuenta2').addEventListener('click', async ()=>{
+        const user = getUserLocalData();
+
+        if (user.password == document.getElementById('pin').value) {
+            await cargarComponente('./componentes/suspender-cuenta/suspender-cuenta3.html','info');
+        } else {
+            if (document.getElementById('pin').value == '') {
+                alert('Debe ingresar una clave');
+            } else alert('Clave incorrecta');
+        }
+    });
+
+</script>

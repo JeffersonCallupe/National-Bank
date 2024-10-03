@@ -1,0 +1,95 @@
+<div class="reactivation-form">
+    <h2>Reactivación de cuenta</h2>
+    <form id="reactivationForm">
+
+        <label for="account-select">Seleccionar cuenta</label>
+        <select id="accountSelect">
+        </select>
+
+        <label for="web-key">Clave web</label>
+        <input id="web-key" type="password" placeholder="Ingrese su clave web">
+
+        
+        <button type="reset" id="reactivar-cuenta">Reactivar</button>
+    </form>
+    
+</div>
+
+<style>
+    
+    .reactivation-form {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 520px;
+        
+    }
+    
+    .reactivation-form h2 {
+        background-color: #8F8F8F;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    #reactivationForm{
+        padding: 20px;
+    
+    }
+    
+    #reactivationForm label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+    
+    #reactivationForm input[type="date"],
+    #reactivationForm input[type="password"],
+    #reactivationForm select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    #reactivationForm button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    #reactivationForm button:hover {
+        background-color: #0056b3;
+    }
+    
+    
+</style>
+
+<script>
+    document.getElementById('reactivar-cuenta').addEventListener('click', ()=>{
+        
+        const cuentaReactivar = document.getElementById('accountSelect').value;
+        
+        password=localStorage.getItem('userPassword');
+        webKey = document.getElementById('web-key').value;
+
+        if (webKey == password){
+            localStorage.setItem('cuentaReactivar', cuentaReactivar);
+            cargarComponente('./componentes/reactivar-cuenta/reactivar-cuenta2.html','info');
+        } else {
+            if (webKey == ''){
+                alert('Ingrese su clave web');
+            } else 
+                alert('Clave web incorrecta');
+        }
+
+    });
+</script>

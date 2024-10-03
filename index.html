@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Bank</title>
+    <link rel="stylesheet" href="./css/loginStyle.css">
+</head>
+<body>
+<div class="card">
+    <img id="logo" src="./images/logo.png" alt="">
+    <form id="login">
+        <div>
+            <select id="document-type" name="document-type" required>
+                <option value="DNI">DNI</option>
+                <option value="Carnet de Extranjeria">Carnet de Extranjeria</option>
+            </select>
+            <input type="text" id="dni" name="dni" placeholder="Número de documento" required><br>
+        </div>
+        <input type="password" id="password" name="password" required placeholder="Clave web"><br>
+
+        <span id="error-message" class="error-message"></span>
+        <img style="display: none;" src="./images/imnotarobot.png">
+        <button type="submit" id="ingresar">Ingresar</button>
+        <br>
+        <a href="#" style="display: none;">¿Olvidaste tu clave web?</a>
+        <img src="./images/line.png">
+        <button type="button" id="registrar" onclick="window.location.href='registro.html'">Registrar</button>
+        <br>
+    </form>
+</div>
+<script src="./js/validation.js"></script>
+</body>
+</html>

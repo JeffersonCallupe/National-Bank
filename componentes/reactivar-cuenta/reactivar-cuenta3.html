@@ -1,0 +1,48 @@
+<div id="confirmationDialog">
+    <p>¡Cuenta reactivada con éxito!</p>
+    <img src="../images/gg_check-o.png" alt="">
+    <div class="button-group">
+        <button id="volverButton" onclick="window.location.href = 'gestionar-cuenta.html'">Volver</button>
+    </div>
+</div>
+
+<style>
+
+#confirmationDialog {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 50px;
+    height: 170px;
+}
+
+#confirmationDialog p {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.button-group button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s;
+}
+
+#volverButton {
+    background-color: #007BFF;
+    color: white;
+}
+
+ #yesButton:hover {
+    background-color: #0056b3;
+    color: white;
+    border-color: transparent;
+}
+
+</style>

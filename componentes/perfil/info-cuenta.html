@@ -1,0 +1,98 @@
+<div class="info-cuenta-form">
+    <h2>Información Personal</h2>
+    <form id="crearCuentaForm">
+        <div>
+            <label for="dni">Tipo Documento</label>
+            <select id="dni" disabled="disabled">
+                <option value="DNI">DNI</option>
+                <option value="CE">carnet de extranjería</option>
+            </select>
+
+            <label for="nombres">Nombres</label>
+            <input id="nombres" type="text" disabled="disabled">
+
+            <label for="celular">Celular</label>
+            <input id="celular" type="tel" placeholder="Ingrese su número de celular" disabled="disabled">
+        </div>
+        
+        <div>
+            <label for="numero-documento">Número de Documento</label>
+            <input id="numero-documento" type="text" placeholder="Ingrese su número de documento" disabled="disabled">
+
+            <label for="apellidos">Apellidos</label>
+            <input id="apellidos" type="text" placeholder="Ingrese sus apellidos" disabled="disabled">
+
+            <label for="fecha-nacimiento">Fecha de Nacimiento</label>
+            <input id="fecha-nacimiento" type="date" disabled="disabled">
+            
+        </div>
+        
+    </form>
+    <button id="nueva-cuenta" type="reset" style="display: none;">Editar</button>
+    
+</div>
+
+<style>
+    
+    .info-cuenta-form {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        width: 520px;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        
+    }
+    
+    .info-cuenta-form h2 {
+        background-color: #8F8F8F;
+        color: white;
+        font-size: 18px;
+        text-align: center;
+        margin-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    #crearCuentaForm {
+        padding: 20px;
+        display: flex;
+    }
+
+    #crearCuentaForm div {
+        width: 50%;
+    }
+    
+    #crearCuentaForm label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+    }
+    
+    #crearCuentaForm input,
+    #crearCuentaForm select {
+        width: 170px;
+        height: 26px;   margin-bottom: 20px;
+        border: none;
+        border-bottom: 1px solid #ccc;
+
+    }
+    
+    #nueva-cuenta {
+        width: 296px;
+        height: 40px;
+        padding: 10px;
+        margin-bottom: 15px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    #nueva-cuenta:hover {
+        background-color: #0056b3;
+    }
+    
+</style>

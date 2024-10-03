@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/cuentaStyle.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar">
+        <ul class="navbar-nav">
+            <li><a href="./menu.html">Inicio</a></li>
+            <li><a href="./web-construccion.html">Acerca de nosotros</a></li>
+            <li><a href="./web-construccion.html">Contáctanos</a></li>
+            <li><a href="./perfil.html">Mi perfil</a></li>
+            <li ><a id="salir" href="./menu.html">Salir</a></li>
+        </ul>
+    </nav>
+    <main>
+        <h1>¡Realiza tranferencias de manera confiable y segura!</h1>
+
+        <div class="contenido-transferencias">
+            <img src="./images/tranferencia.png" alt="imagen tranferencia">
+            <p>Tranfiere entre tus cuentas y cuentas externas </p>
+            
+
+        <div class="transferencias">
+            <input type="radio" name="transferType" value="betweenAccounts" id="betweenAccounts" checked> Entre cuentas propias
+            <input type="radio" name="transferType" value="toExternalAccounts" id="toExternalAccounts"> A cuentas externas
+        </div>
+        <div class="cuentaOrigen">
+            <label for="cuentaOrigen">Seleccione la cuenta de origen</label><br>
+            <select name="cuentaOrigen" id="cuentaOrigen">
+            </select>
+        </div>
+        <div class="cuentaDestino">
+            <label for="cuentaDestino">Seleccione la cuenta de destino</label><br>
+            <select name="cuentaDestino" id="cuentaDestino">
+            </select>
+        </div>
+        <div class="cuentaDestinoExterna">
+            <label for="cuentaDestinoExterna">Ingrese la cuenta de destino</label><br>
+            <input type="text" id="cuentaDestinoExterna">
+        </div>
+        <div class="montoTransferir">
+            <label for="montoTransferir">Ingrese el monto a transferir en soles</label><br>
+            <input type="text" id="montoTransferir">
+        </div>
+        <button id="ejecutarTransferencia">Transferir</button>
+        </div>
+        
+    </main>
+    <style>
+        .cuentaOrigen select, .cuentaDestino select, .cuentaDestinoExterna input, .montoTransferir input{
+            width: 400px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .contenido-transferencias img{
+            width: 200px;
+            padding-top: 30px;
+
+        }
+        h1{
+            padding-bottom: 20px;
+        }
+        .contenido-transferencias{
+            background-color: white;
+            padding-bottom: 40px;
+        }
+        .contenido-transferencias p{
+            padding: 20px;
+        }
+        .cuentaOrigen{
+            padding: 20px;
+        }
+        .cuentaDestino{
+            padding: 20px;
+        }
+        .cuentaDestinoExterna{
+            padding: 20px;
+        }
+        #ejecutarTransferencia{
+            margin-top: 30px;
+    background-color: #0842C5;
+    color: white !important;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+        
+    </style>
+
+    <footer>
+        © National Bank
+    </footer>
+    <script src="./js/cargarComponente.js"></script>
+    <script src="./js/gestionarCuenta.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const betweenAccountsRadio = document.getElementById('betweenAccounts');
+            const toExternalAccountsRadio = document.getElementById('toExternalAccounts');
+            const cuentaOrigen = document.querySelector('.cuentaOrigen');
+            const cuentaDestino = document.querySelector('.cuentaDestino');
+            const cuentaDestinoExterna = document.querySelector('.cuentaDestinoExterna');
+
+            function updateVisibility() {
+                if (betweenAccountsRadio.checked) {
+                    cuentaOrigen.style.display = 'block';
+                    cuentaDestino.style.display = 'block';
+                    cuentaDestinoExterna.style.display = 'none';
+                } else if (toExternalAccountsRadio.checked) {
+                    cuentaOrigen.style.display = 'block';
+                    cuentaDestino.style.display = 'none';
+                    cuentaDestinoExterna.style.display = 'block';
+                }
+            }
+
+            betweenAccountsRadio.addEventListener('change', updateVisibility);
+            toExternalAccountsRadio.addEventListener('change', updateVisibility);
+
+            // Inicializar visibilidad al cargar la página
+            updateVisibility();
+        });
+        document.getElementById('ejecutarTransferencia').addEventListener('click', async () => {
+            async function realizarTransferencia() {
+    const user = getUserLocalData(); // Obtiene el usuario desde los datos locales
+    const userId = user.id; // Extrae el ID del usuario
+
+    //obteniendo cuentas seleccionadas
+    const cuentaOrigen = document.getElementById('cuentaOrigen').value;
+    let cuentaDestino = document.getElementById('cuentaDestino').value;
+    const cuentaDestinoExterna = document.getElementById('cuentaDestinoExterna').value;
+    const montoTransferir = document.getElementById('montoTransferir').value;
+
+//////////////////////////////////////////////
+const selectedOption = document.querySelector('input[name="transferType"]:checked').value;
+
+        if (selectedOption === 'betweenAccounts') {
+                
+            } else if (selectedOption === 'toExternalAccounts') {
+                cuentaDestino=cuentaDestinoExterna;
+            }
+//////////////////////////////////////7
+
+    const url = `http://104.248.7.1:8080/api/transaction/transfer/${userId}`;
+    const data = {
+        "fromAccount": {
+            "accountNumber": cuentaOrigen,
+        },
+        "toAccount": {
+            "accountNumber": cuentaDestino,
+        },
+        "amount": parseFloat(montoTransferir),
+    };
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+            const responseData = await response.text();
+            console.log('Transaction performed successfully:', responseData);
+            await updateUserLocalData()
+            alert('Transferencia realizada con éxito');
+            location.reload();
+        } else {
+            console.error('Error en la transacción:', response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error('Error en la conexión:', error);
+    }
+}
+            realizarTransferencia();        
+}
+        
+    
+    )
+    </script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded',async ()=>{
+    function  populateAccountSelect(id) {
+        const user = getUserLocalData();
+        
+        if (user && user.bankAccounts) {
+          const accountSelect = document.getElementById(id);
+          
+          user.bankAccounts.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.accountNumber;
+            option.textContent = `Cuenta: ${account.accountNumber} - Saldo: s/ ${account.balance} - Estado: ${account.status}`;
+            if (account.status === 'ACTIVE') {
+              accountSelect.appendChild(option);
+            }
+          });
+        } else {
+          console.error('No se encontraron cuentas bancarias para el usuario.');
+        }
+      }
+    populateAccountSelect('cuentaOrigen');
+    populateAccountSelect('cuentaDestino');
+    
+});
+
+
+    </script>
+</body>
+</html>

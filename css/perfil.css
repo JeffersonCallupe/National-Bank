@@ -1,0 +1,121 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+body {
+    font-family: Arial, sans-serif; /* Usa una fuente común */
+    background: white; /* Color de fondo claro */
+    display:flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.navbar {
+    background-color: #EFF5FF; /* Fondo oscuro para la barra de navegación */
+    color: black; 
+    padding: 20px 0; /* Algo de padding alrededor de la barra */
+    text-align: right; /* Centrar los elementos de la lista */
+}
+
+.navbar-nav {
+    list-style: none; /* Remover estilos de lista */
+    padding: 0; /* Remover padding */
+    margin: 0; /* Remover márgenes */
+}
+
+.navbar-nav li {
+    display: inline; /* Mostrar elementos en línea */
+    margin-right: 60px; /* Espacio entre elementos */
+}
+
+.navbar-nav a {
+    color: black;
+    text-decoration: none; /* No subrayar los enlaces */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.navbar-nav a:hover {
+    text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+#salir{
+    background-color: #0842C5;
+    color: white !important;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+main{
+    background-color: #EFF5FF;
+
+    margin-top: 60px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.menu {
+    width: 520px;
+    height: 305px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera para el contenedor */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Oculta cualquier desbordamiento */
+    margin-top: 80px;
+}
+
+.info{
+    margin-top: 80px;
+    width: 1050px;
+}
+
+.menu-title {
+
+    margin: 0; /* Remover margen */
+    padding: 18px 20px; /* Espaciado interno */
+    font-size: 25px; /* Tamaño de fuente */
+    color: #1F38AE; /* Color de texto */
+    border-bottom: 1px solid #ccc; /* Borde inferior para separar del contenido */
+}
+
+.menu-list {
+    list-style: none; /* Remover estilos de lista */
+    margin: 0; /* Remover márgenes */
+    padding: 0; /* Remover relleno */
+    background: white;
+}
+
+.menu-list li a {
+    display: block; /* Hace que el enlace llene todo el espacio del li */
+    padding: 18px 20px; /* Espaciado interno para los enlaces */
+    text-decoration: none; /* Remover subrayado de enlaces */
+    color: #333; /* Color de texto para los enlaces */
+    border-bottom: 1px solid #ccc; /* Línea divisoria entre elementos */
+    font-size: 20px;
+}
+
+.menu-list li a:hover {
+    background-color: #f9f9f9; /* Color de fondo al pasar el mouse */
+}
+
+.arrow {
+    float: right; /* Posicionar la flecha hacia la derecha */
+}
+
+.menu-list li:last-child a {
+    border-bottom: none; /* No mostrar borde en el último elemento */
+}
+
+.contenido{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+
+h1 {
+    padding-top: 35px;
+}
+
+main p{
+    font-size: 20px;
+}
